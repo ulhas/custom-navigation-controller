@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Ulhas Mandrawadkar. All rights reserved.
 //
 
+#import "UICustomNavigationController.h"
+#import "AViewController.h"
+
 #import "AppDelegate.h"
 
 @implementation AppDelegate
@@ -15,6 +18,22 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    AViewController *aViewController = [AViewController new];
+    UICustomNavigationController *navigationViewController = [[UICustomNavigationController alloc] initWithRootViewController:aViewController shouldPop:NO];
+    
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:navigationViewController.view.bounds];
+    backgroundImageView.image = [UIImage imageNamed:@"welcome-background"];
+    navigationViewController.backgroundView = backgroundImageView;
+    
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    label.text = @"Hi";
+    label.textAlignment = NSTextAlignmentCenter;
+    navigationViewController.navigationView = label;
+    
+    self.window.rootViewController = navigationViewController;
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

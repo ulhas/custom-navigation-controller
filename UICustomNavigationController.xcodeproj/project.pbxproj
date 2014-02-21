@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4859F1A118B75DFE004C31F8 /* BViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4859F19F18B75DFE004C31F8 /* BViewController.m */; };
+		4859F1A218B75DFE004C31F8 /* BViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4859F1A018B75DFE004C31F8 /* BViewController.xib */; };
 		48D0259318B614FB00F331AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D0259218B614FB00F331AA /* Foundation.framework */; };
 		48D0259518B614FB00F331AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D0259418B614FB00F331AA /* CoreGraphics.framework */; };
 		48D0259718B614FB00F331AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D0259618B614FB00F331AA /* UIKit.framework */; };
@@ -20,6 +22,9 @@
 		48D025B618B614FB00F331AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48D025B418B614FB00F331AA /* InfoPlist.strings */; };
 		48D025B818B614FB00F331AA /* UICustomNavigationControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D025B718B614FB00F331AA /* UICustomNavigationControllerTests.m */; };
 		48D025C318B6151400F331AA /* UICustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D025C218B6151400F331AA /* UICustomNavigationController.m */; };
+		48D025C718B61A2300F331AA /* AViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D025C518B61A2300F331AA /* AViewController.m */; };
+		48D025C818B61A2300F331AA /* AViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48D025C618B61A2300F331AA /* AViewController.xib */; };
+		48D025CA18B61D3800F331AA /* welcome-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48D025C918B61D3800F331AA /* welcome-background@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4859F19E18B75DFE004C31F8 /* BViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BViewController.h; sourceTree = "<group>"; };
+		4859F19F18B75DFE004C31F8 /* BViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BViewController.m; sourceTree = "<group>"; };
+		4859F1A018B75DFE004C31F8 /* BViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BViewController.xib; sourceTree = "<group>"; };
 		48D0258F18B614FB00F331AA /* UICustomNavigationController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UICustomNavigationController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D0259218B614FB00F331AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		48D0259418B614FB00F331AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -51,6 +59,10 @@
 		48D025B718B614FB00F331AA /* UICustomNavigationControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UICustomNavigationControllerTests.m; sourceTree = "<group>"; };
 		48D025C118B6151400F331AA /* UICustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomNavigationController.h; sourceTree = "<group>"; };
 		48D025C218B6151400F331AA /* UICustomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomNavigationController.m; sourceTree = "<group>"; };
+		48D025C418B61A2300F331AA /* AViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AViewController.h; sourceTree = "<group>"; };
+		48D025C518B61A2300F331AA /* AViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AViewController.m; sourceTree = "<group>"; };
+		48D025C618B61A2300F331AA /* AViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AViewController.xib; sourceTree = "<group>"; };
+		48D025C918B61D3800F331AA /* welcome-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome-background@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +126,15 @@
 				48D025A218B614FB00F331AA /* AppDelegate.m */,
 				48D025A418B614FB00F331AA /* Images.xcassets */,
 				48D0259918B614FB00F331AA /* Supporting Files */,
+				48D025C918B61D3800F331AA /* welcome-background@2x.png */,
 				48D025C118B6151400F331AA /* UICustomNavigationController.h */,
 				48D025C218B6151400F331AA /* UICustomNavigationController.m */,
+				48D025C418B61A2300F331AA /* AViewController.h */,
+				48D025C518B61A2300F331AA /* AViewController.m */,
+				48D025C618B61A2300F331AA /* AViewController.xib */,
+				4859F19E18B75DFE004C31F8 /* BViewController.h */,
+				4859F19F18B75DFE004C31F8 /* BViewController.m */,
+				4859F1A018B75DFE004C31F8 /* BViewController.xib */,
 			);
 			path = UICustomNavigationController;
 			sourceTree = "<group>";
@@ -224,8 +243,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4859F1A218B75DFE004C31F8 /* BViewController.xib in Resources */,
+				48D025C818B61A2300F331AA /* AViewController.xib in Resources */,
 				48D0259D18B614FB00F331AA /* InfoPlist.strings in Resources */,
 				48D025A518B614FB00F331AA /* Images.xcassets in Resources */,
+				48D025CA18B61D3800F331AA /* welcome-background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,8 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48D025C718B61A2300F331AA /* AViewController.m in Sources */,
 				48D025A318B614FB00F331AA /* AppDelegate.m in Sources */,
 				48D0259F18B614FB00F331AA /* main.m in Sources */,
+				4859F1A118B75DFE004C31F8 /* BViewController.m in Sources */,
 				48D025C318B6151400F331AA /* UICustomNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,6 +471,7 @@
 				48D025BD18B614FB00F331AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		48D025BE18B614FB00F331AA /* Build configuration list for PBXNativeTarget "UICustomNavigationControllerTests" */ = {
 			isa = XCConfigurationList;
@@ -455,6 +480,7 @@
 				48D025C018B614FB00F331AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
