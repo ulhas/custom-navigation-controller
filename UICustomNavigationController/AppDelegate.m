@@ -32,6 +32,11 @@
     label.textAlignment = NSTextAlignmentCenter;
     navigationViewController.navigationView = label;
     
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
+    label2.text = @"TOOL Nar";
+    label2.textAlignment = NSTextAlignmentCenter;
+    navigationViewController.toolBarView = label2;
+    
     self.window.rootViewController = navigationViewController;
     
     [self.window makeKeyAndVisible];

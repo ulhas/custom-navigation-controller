@@ -19,32 +19,32 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"%s %p", __FUNCTION__, self);
+    NSLog(@"%s %p", __PRETTY_FUNCTION__, self);
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-   NSLog(@"%s %p", __FUNCTION__, self);
+   NSLog(@"%s %p", __PRETTY_FUNCTION__, self);
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"%s %p", __FUNCTION__, self);
+    NSLog(@"%s %p", __PRETTY_FUNCTION__, self);
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    NSLog(@"%s %p", __FUNCTION__, self);
+    NSLog(@"%s %p", __PRETTY_FUNCTION__, self);
 }
 
 - (void)viewWillLayoutSubviews
 {
-    NSLog(@"%s %p", __FUNCTION__, self);
+    NSLog(@"%s %p", __PRETTY_FUNCTION__, self);
 }
 
 - (void)viewDidLayoutSubviews
 {
-   NSLog(@"%s %p", __FUNCTION__, self);
+   NSLog(@"%s %p", __PRETTY_FUNCTION__, self);
 }
 
 - (IBAction)buttonClicked:(id)sender
