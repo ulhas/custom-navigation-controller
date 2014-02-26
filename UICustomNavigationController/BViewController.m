@@ -17,8 +17,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
+}
+
+
+- (IBAction)dismiss:(id)sender
+{
+    [self.underlyingController dismissViewControllerAnimated:NO completion:^{
+        NSLog(@"Finished");
+    }];
 }
 
 @end

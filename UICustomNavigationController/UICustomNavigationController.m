@@ -7,12 +7,14 @@
 //
 
 #import "UICustomNavigationController.h"
+#import "UIOverlayViewController.h"
 
 static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
 
 @interface UICustomNavigationController ()
 
 @property (nonatomic, strong) UIView *containerView;
+@property (nonatomic, strong) NSMutableArray *overlayControllers;
 @property (nonatomic, strong, readwrite) UIViewController *rootViewController;
 
 @property (nonatomic, assign) BOOL shouldPop;
@@ -30,6 +32,7 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
     {
         self.rootViewController = rootViewController;
         self.shouldPop = shouldPop;
+        self.overlayControllers = [NSMutableArray array];
     }
     
     return self;
@@ -40,6 +43,11 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
     [super viewDidLoad];
     [self setupContainerView];
     [self pushViewController:self.rootViewController animated:NO completion:nil];
+}
+
+- (UIViewController *)topViewController
+{
+    return self.childViewControllers.lastObject;
 }
 
 #pragma mark - Controller View Contraint Methods
@@ -253,7 +261,7 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
                                 
                                 if (completion)
                                 {
-                                    dispatch_sync(dispatch_get_main_queue(), completion);
+                                    dispatch_async(dispatch_get_main_queue(), completion);
                                 }
                             }];
 }
@@ -286,7 +294,7 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
                                 
                                 if (completion)
                                 {
-                                    dispatch_sync(dispatch_get_main_queue(), completion);
+                                    dispatch_async(dispatch_get_main_queue(), completion);
                                 }
                             }];
 }
@@ -314,9 +322,69 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
                                 
                                 if (completion)
                                 {
-                                    dispatch_sync(dispatch_get_main_queue(), completion);
+                                    dispatch_async(dispatch_get_main_queue(), completion);
                                 }
                             }];
+}
+
+- (void)presentOverLayViewController:(UIOverlayViewController *)overlayController animated:(BOOL)flag completion:(void (^)(void))completion
+{
+    overlayController.view.frame = self.view.bounds;
+    overlayController.underlyingController = self;
+    [self.view addSubview:overlayController.view];
+    
+    [self.overlayControllers addObject:overlayController];
+    
+    NSTimeInterval duration = 0.0f;
+    if (flag)
+    {
+        duration = kTransitionAnimationDuration;
+        overlayController.view.transform = CGAffineTransformMakeTranslation(0.0f, self.view.bounds.size.height);
+    }
+    
+    [UIView animateWithDuration:duration
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         overlayController.view.transform = CGAffineTransformMakeTranslation(0.0f, 0.0f);
+                     }
+                     completion:^(BOOL finished) {
+                         if (completion)
+                         {
+                             dispatch_async(dispatch_get_main_queue(), completion);
+                         }
+                     }];
+}
+
+- (void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion
+{
+    UIViewController *viewControllerToDismiss = self.overlayControllers.lastObject;
+    if (!viewControllerToDismiss)
+    {
+        return;
+    }
+    
+    NSTimeInterval duration = 0.0f;
+    if (flag)
+    {
+        duration = kTransitionAnimationDuration;
+    }
+    
+    [UIView animateWithDuration:duration
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         viewControllerToDismiss.view.transform = CGAffineTransformMakeTranslation(0.0f, self.view.bounds.size.height);
+                     }
+                     completion:^(BOOL finished) {
+                         [viewControllerToDismiss.view removeFromSuperview];
+                         [self.overlayControllers removeObject:viewControllerToDismiss];
+                         
+                         if (completion)
+                         {
+                             dispatch_async(dispatch_get_main_queue(), completion);
+                         }
+                     }];
 }
 
 #pragma mark - Appearance Methods

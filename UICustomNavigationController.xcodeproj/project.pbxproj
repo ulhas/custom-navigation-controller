@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4859F1A118B75DFE004C31F8 /* BViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4859F19F18B75DFE004C31F8 /* BViewController.m */; };
 		4859F1A218B75DFE004C31F8 /* BViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4859F1A018B75DFE004C31F8 /* BViewController.xib */; };
+		486D58C918BDE5820002ADC8 /* UIOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D58C818BDE5820002ADC8 /* UIOverlayViewController.m */; };
 		48D0259318B614FB00F331AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D0259218B614FB00F331AA /* Foundation.framework */; };
 		48D0259518B614FB00F331AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D0259418B614FB00F331AA /* CoreGraphics.framework */; };
 		48D0259718B614FB00F331AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D0259618B614FB00F331AA /* UIKit.framework */; };
@@ -41,6 +42,8 @@
 		4859F19E18B75DFE004C31F8 /* BViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BViewController.h; sourceTree = "<group>"; };
 		4859F19F18B75DFE004C31F8 /* BViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BViewController.m; sourceTree = "<group>"; };
 		4859F1A018B75DFE004C31F8 /* BViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BViewController.xib; sourceTree = "<group>"; };
+		486D58C718BDE5820002ADC8 /* UIOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIOverlayViewController.h; sourceTree = "<group>"; };
+		486D58C818BDE5820002ADC8 /* UIOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIOverlayViewController.m; sourceTree = "<group>"; };
 		48D0258F18B614FB00F331AA /* UICustomNavigationController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UICustomNavigationController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D0259218B614FB00F331AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		48D0259418B614FB00F331AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -135,6 +138,8 @@
 				4859F19E18B75DFE004C31F8 /* BViewController.h */,
 				4859F19F18B75DFE004C31F8 /* BViewController.m */,
 				4859F1A018B75DFE004C31F8 /* BViewController.xib */,
+				486D58C718BDE5820002ADC8 /* UIOverlayViewController.h */,
+				486D58C818BDE5820002ADC8 /* UIOverlayViewController.m */,
 			);
 			path = UICustomNavigationController;
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 				48D0259F18B614FB00F331AA /* main.m in Sources */,
 				4859F1A118B75DFE004C31F8 /* BViewController.m in Sources */,
 				48D025C318B6151400F331AA /* UICustomNavigationController.m in Sources */,
+				486D58C918BDE5820002ADC8 /* UIOverlayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

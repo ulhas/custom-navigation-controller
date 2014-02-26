@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Ulhas Mandrawadkar. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UIOverlayViewController.h"
 
-@interface BViewController : UIViewController
+@interface BViewController : UIOverlayViewController
 
 @end

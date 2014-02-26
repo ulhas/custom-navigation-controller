@@ -68,7 +68,9 @@
     BViewController *aViewController = [[BViewController alloc] initWithNibName:@"BViewController" bundle:nil];
     
     UICustomNavigationController *navCon = (UICustomNavigationController *)self.parentViewController;
-    [navCon fadeInViewControler:aViewController completion:nil];
+    [navCon presentOverLayViewController:aViewController animated:NO completion:^{
+        NSLog(@"Finished");
+    }];
 }
 
 

@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class UIOverlayViewController;
+
 @interface UICustomNavigationController : UIViewController
 
 @property (nonatomic, readonly) NSArray *viewControllers;
+@property (nonatomic, readonly) UIViewController *topViewController;
 @property (nonatomic, strong, readonly) UIViewController *rootViewController;
 
 @property (nonatomic, strong) UIView *backgroundView;
@@ -22,5 +25,7 @@
 - (void)slideUpViewControler:(UIViewController *)viewController completion:(void (^)(void))completion;
 - (void)fadeInViewControler:(UIViewController *)viewController completion:(void (^)(void))completion;
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(void (^)(void))completion;
+
+- (void)presentOverLayViewController:(UIOverlayViewController *)overlayController animated:(BOOL)flag completion:(void (^)(void))completion;
 
 @end
