@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 Ulhas Mandrawadkar. All rights reserved.
 //
 
-#import "UICustomNavigationController.h"
 #import "UIOverlayViewController.h"
+#import "UICustomNavigationController.h"
 
-static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
+static const NSTimeInterval kTransitionAnimationDuration = 0.5f;
 
 @interface UICustomNavigationController ()
 
 @property (nonatomic, strong) UIView *containerView;
-@property (nonatomic, strong) NSMutableArray *overlayControllers;
+@property (nonatomic, strong, readwrite) NSMutableArray *overlayControllers;
 @property (nonatomic, strong, readwrite) UIViewController *rootViewController;
 
 @property (nonatomic, assign) BOOL shouldPop;
@@ -45,14 +45,9 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
     [self pushViewController:self.rootViewController animated:NO completion:nil];
 }
 
-- (UIViewController *)topViewController
-{
-    return self.childViewControllers.lastObject;
-}
-
 #pragma mark - Controller View Contraint Methods
 
-- (void)addFillConstraintsToView:(UIView *)view parentView:(UIView *)parentView
+- (void)addFillConstraintsToView:(UIView *)view
 {
     NSArray *horizontalConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"|[view]|"
                                                                             options:NSLayoutFormatDirectionLeadingToTrailing
@@ -64,9 +59,9 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
                                                                           metrics:nil
                                                                             views:NSDictionaryOfVariableBindings(view)];
     
-    [parentView addConstraints:horizontalConstraint];
-    [parentView addConstraints:verticalConstraint];
-    [parentView layoutIfNeeded];
+    [self.view addConstraints:horizontalConstraint];
+    [self.view addConstraints:verticalConstraint];
+    [self.view layoutIfNeeded];
 }
 
 - (void)addTopConstraintToView:(UIView *)view
@@ -76,8 +71,8 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
                                                                             metrics:nil
                                                                               views:NSDictionaryOfVariableBindings(view)];
     
-    NSDictionary *metrics = @{@"viewHeight": @(view.bounds.size.height)};
-    NSArray *verticalConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view(viewHeight)]"
+    NSDictionary *metrics = @{@"viewHeight": @(view.bounds.size.height), @"statusBarHeight": @(UIApplication.sharedApplication.statusBarFrame.size.height)};
+    NSArray *verticalConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-statusBarHeight-[view(viewHeight)]"
                                                                           options:NSLayoutFormatDirectionLeadingToTrailing
                                                                           metrics:metrics
                                                                             views:NSDictionaryOfVariableBindings(view)];
@@ -89,13 +84,12 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
 
 - (void)addBottomConstraintToView:(UIView *)view
 {
-    NSArray *horizontalConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|"
+    NSArray *horizontalConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"|[view]|"
                                                                             options:NSLayoutFormatDirectionLeadingToTrailing
                                                                             metrics:nil
                                                                               views:NSDictionaryOfVariableBindings(view)];
     
     NSDictionary *metrics = @{@"viewHeight": @(view.bounds.size.height)};
-    
     NSArray *verticalConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[view(viewHeight)]|"
                                                                           options:NSLayoutFormatDirectionLeadingToTrailing
                                                                           metrics:metrics
@@ -114,7 +108,7 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
     self.containerView.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:self.containerView];
-    [self addFillConstraintsToView:self.containerView parentView:self.view];
+    [self addFillConstraintsToView:self.containerView];
 }
 
 - (void)setBackgroundView:(UIView *)backgroundView
@@ -132,12 +126,19 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
 - (void)setupBackgroundView
 {
     [self.view addSubview:self.backgroundView];
-    [self addFillConstraintsToView:self.backgroundView parentView:self.view];
+    [self addFillConstraintsToView:self.backgroundView];
     [self.view sendSubviewToBack:self.backgroundView];
 }
 
 - (void)setNavigationView:(UIView *)navigationView
 {
+    if (navigationView == nil)
+    {
+        [_navigationView removeFromSuperview];
+        _navigationView = nil;
+        return;
+    }
+    
     if ([navigationView isEqual:self.navigationView])
     {
         return;
@@ -157,6 +158,13 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
 
 - (void)setToolBarView:(UIView *)toolBarView
 {
+    if (toolBarView == nil)
+    {
+        [_toolBarView removeFromSuperview];
+        _toolBarView = nil;
+        return;
+    }
+    
     if ([toolBarView isEqual:self.toolBarView])
     {
         return;
@@ -187,6 +195,11 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
 - (NSArray *)viewControllers
 {
     return self.childViewControllers;
+}
+
+- (UIViewController *)topViewController
+{
+    return self.childViewControllers.lastObject;
 }
 
 #pragma mark - Transition Methods
@@ -286,10 +299,13 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
                               duration:kTransitionAnimationDuration
                                options:UIViewAnimationOptionCurveEaseInOut
                             animations:^{
+                                NSLog(@"Background View Frame : %@", NSStringFromCGRect(self.backgroundView.frame));
                                 viewController.view.transform = CGAffineTransformMakeTranslation(0.0f, 0.0f);
                                 topViewController.view.transform = CGAffineTransformMakeTranslation(0.0f, -1 * topViewController.view.bounds.size.height);
                             }
                             completion:^(BOOL finished) {
+                                
+                                NSLog(@"Background View Frame : %@", NSStringFromCGRect(self.backgroundView.frame));
                                 [self didTransitionFromViewController:topViewController toViewController:viewController];
                                 
                                 if (completion)
@@ -325,9 +341,7 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
                                     dispatch_async(dispatch_get_main_queue(), completion);
                                 }
                             }];
-}
-
-- (void)presentOverLayViewController:(UIOverlayViewController *)overlayController animated:(BOOL)flag completion:(void (^)(void))completion
+}- (void)presentOverLayViewController:(UIOverlayViewController *)overlayController animated:(BOOL)flag completion:(void (^)(void))completion
 {
     overlayController.view.frame = self.view.bounds;
     overlayController.underlyingController = self;
@@ -356,7 +370,7 @@ static const NSTimeInterval kTransitionAnimationDuration = 1.0f;
                      }];
 }
 
-- (void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion
+- (void)dismissOverLayViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion
 {
     UIViewController *viewControllerToDismiss = self.overlayControllers.lastObject;
     if (!viewControllerToDismiss)
